@@ -50,6 +50,7 @@ namespace Gnx.Controllers
             return new UserInfoViewModel
             {
                 UserName = User.Identity.GetUserName(),
+                Email = UserManager.FindById( User.Identity.GetUserId()).Email,
                 HasRegistered = externalLogin == null,
                 LoginProvider = externalLogin != null ? externalLogin.LoginProvider : null
             };
@@ -323,7 +324,8 @@ namespace Gnx.Controllers
 
             IdentityUser user = new IdentityUser
             {
-                UserName = model.UserName
+                UserName = model.UserName,
+                Email = model.Email
             };
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);

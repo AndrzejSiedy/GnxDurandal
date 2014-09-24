@@ -29,6 +29,8 @@ namespace Gnx.Models
     {
         public string UserName { get; set; }
 
+        public string Email { get; set; }
+
         public bool HasRegistered { get; set; }
 
         public string LoginProvider { get; set; }

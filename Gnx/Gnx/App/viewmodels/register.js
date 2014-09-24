@@ -3,6 +3,7 @@
 
         // Data
         var userName = ko.observable('').extend({ required: true });
+        var email = ko.observable('').extend({ required: true });
         var password = ko.observable('').extend({ required: true });
         var confirmPassword = ko.observable('').extend({ required: true, equal: password });
 
@@ -22,6 +23,7 @@
 
             dataservice.register({
                 userName: userName(),
+                email: email(),
                 password: password(),
                 confirmPassword: confirmPassword()
             }).done(function (data) {
@@ -33,7 +35,7 @@
                     registering(false);
 
                     if (data.userName && data.access_token) {
-                        authservice.logUserIn(data.userName, data.access_token, false /* persistent */);
+                        authservice.logUserIn(data.userName, data.email, data.access_token, false /* persistent */);
                     } else {
                         errors.push("An unknown error occurred.");
                     }
@@ -66,6 +68,7 @@
         
     return {
         userName: userName,
+        email: email,
         password: password,
         confirmPassword: confirmPassword,
         register: register,

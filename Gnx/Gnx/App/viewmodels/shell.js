@@ -129,8 +129,9 @@
 
         function addAnonymousRoutes(router) {
             router.map([
-                { route: 'login', moduleId: 'login', nav: 1 },
-                { route: 'register', moduleId: 'register', nav: 2 }
+                { route: 'about', moduleId: 'about', nav: 1 },
+                { route: 'login', moduleId: 'login', nav: 2 },
+                { route: 'register', moduleId: 'register', nav: 3 }
             ]);
         }
 

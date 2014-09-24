@@ -32,11 +32,37 @@ namespace Gnx.Providers
             _userManagerFactory = userManagerFactory;
         }
 
+        private bool IsValidEmail(string email)
+        {
+            try {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return true;
+            }
+            catch {
+                return false;
+            }
+        }
+
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
             using (UserManager<IdentityUser> userManager = _userManagerFactory())
             {
-                IdentityUser user = await userManager.FindAsync(context.UserName, context.Password);
+
+                // user can log in using UserName or email
+                // test if UserName contains valid 
+
+                IdentityUser user;
+
+                if (IsValidEmail(context.UserName))
+                {
+                    var userFromEmail = await userManager.FindByEmailAsync(context.UserName);
+                    user = await userManager.FindAsync(userFromEmail.UserName, context.Password);
+                }
+                else
+                {
+                    user = await userManager.FindAsync(context.UserName, context.Password);
+                }
+
 
                 if (user == null)
                 {

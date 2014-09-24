@@ -14,7 +14,7 @@ define('knockout', ko);
 define(['durandal/system', 'durandal/app', 'durandal/viewLocator', 'knockout'],
     function (system, app, viewLocator, ko) {
         system.debug(true);
-        app.title = 'Durandal Single Page Application';
+        app.title = 'Gnx Platform';
 
         ko.validation.init({ grouping: { observable: false } });
 

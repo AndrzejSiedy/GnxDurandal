@@ -1,0 +1,39 @@
+﻿<div class="container body-content">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <p class="navbar-brand" data-bind="if: !loggedIn()">Application Name</p>
+                <a href="#" class="navbar-brand" data-bind="if: loggedIn()">Application Name</a>
+            </div>
+            
+            <div class="navbar-collapse collapse" data-bind="if: loggedIn()">
+                <ul class="nav navbar-nav">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="/Help">Help</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right" data-bind="with: user">
+                    <li>
+                        <span class="navbar-text nofloat">Hello, <a href="#/manage" class="navbar-link" data-bind="text: name"></a>!</span>
+                    </li>
+                    <li><a href="#" data-bind="click: $root.logOff">Log off</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div data-bind="foreach: errors" class="padding-error">
+        <p class="text-danger" data-bind="text: $data"></p>
+    </div>
+    
+    <div data-bind="router: { cacheViews:false }"></div>
+
+    <hr />
+    <footer>
+        <p>&copy; 2013 - My ASP.NET Application</p>
+    </footer>
+</div>

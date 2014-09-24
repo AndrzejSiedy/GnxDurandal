@@ -7,14 +7,19 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <p class="navbar-brand" data-bind="if: !loggedIn()">Application Name</p>
-                <a href="#" class="navbar-brand" data-bind="if: loggedIn()">Application Name</a>
+                <a href="#" class="navbar-brand">
+                    <span class="glyphicon glyphicon-th-large"></span>
+                    GNX Platform<sup>v 1.0</sup>
+                </a>
+                <a href="#/about" class="navbar-brand" >
+                    About
+                </a>
             </div>
             
             <div class="navbar-collapse collapse" data-bind="if: loggedIn()">
                 <ul class="nav navbar-nav">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="/Help">Help</a></li>
+                    <!--<li><a href="#">Home</a></li>-->
+                    <!--<li><a href="/Help">Help</a></li>-->
                 </ul>
                 <ul class="nav navbar-nav navbar-right" data-bind="with: user">
                     <li>
@@ -33,7 +38,6 @@
     <div data-bind="router: { cacheViews:false }"></div>
 
     <hr />
-    <footer>
-        <p>&copy; 2013 - My ASP.NET Application</p>
-    </footer>
+
+
 </div>

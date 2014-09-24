@@ -123,7 +123,8 @@
         function addAuthenticatedRoutes(router) {
             router.map([
                 { route: '', moduleId: 'home', nav: 1 },
-                { route: 'manage', moduleId: 'manage', nav: 2 }
+                { route: 'about', moduleId: 'about', nav: 2 },
+                { route: 'manage', moduleId: 'manage', nav: 3 }
             ]);
         }
 
@@ -137,9 +138,10 @@
 
         function addRegisterExternalRoutes(router) {
             router.map([
-                { route: 'login', moduleId: 'login', nav: 1 },
-                { route: 'register', moduleId: 'register', nav: 2 },
-                { route: 'registerExternal', moduleId: 'registerExternal', nav: 3 }
+                { route: 'about', moduleId: 'about', nav: 1 },
+                { route: 'login', moduleId: 'login', nav: 2 },
+                { route: 'register', moduleId: 'register', nav: 3 },
+                { route: 'registerExternal', moduleId: 'registerExternal', nav: 4 }
             ]);
         }
 

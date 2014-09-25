@@ -188,10 +188,12 @@
     <Content Include="App\viewmodels\home.js" />
     <Content Include="App\viewmodels\login.js" />
     <Content Include="App\viewmodels\manage.js" />
+    <Content Include="App\viewmodels\app.js" />
     <Content Include="App\viewmodels\module.js" />
     <Content Include="App\viewmodels\notfound.js" />
     <Content Include="App\viewmodels\register.js" />
     <Content Include="App\viewmodels\registerExternal.js" />
+    <Content Include="App\views\app.html" />
     <Content Include="App\views\module.html" />
     <Content Include="App\views\home.html" />
     <Content Include="App\views\about.html" />

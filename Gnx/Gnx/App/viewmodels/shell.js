@@ -123,18 +123,20 @@
         function addAuthenticatedRoutes(router) {
             router.map([
                 { route: '', moduleId: 'home', nav: 1 },
-                { route: 'module', moduleId: 'module', nav: 2 },
-                { route: 'about', moduleId: 'about', nav: 3 },
-                { route: 'manage', moduleId: 'manage', nav: 4 }
+                { route: 'app', moduleId: 'app', nav: 2 },
+                { route: 'module', moduleId: 'module', nav: 3 },
+                { route: 'about', moduleId: 'about', nav: 4 },
+                { route: 'manage', moduleId: 'manage', nav: 5 }
             ]);
         }
 
         function addAnonymousRoutes(router) {
             router.map([
                 { route: '', moduleId: 'home', nav: 1 },
-                { route: 'about', moduleId: 'about', nav: 2 },
-                { route: 'login', moduleId: 'login', nav: 3 },
-                { route: 'register', moduleId: 'register', nav: 4 }
+                { route: 'app', moduleId: 'app', nav: 2 },
+                { route: 'about', moduleId: 'about', nav: 3 },
+                { route: 'login', moduleId: 'login', nav: 4 },
+                { route: 'register', moduleId: 'register', nav: 5 }
             ]);
         }
 

@@ -7,7 +7,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a href="#" class="navbar-brand">
+                <a href="#" class="navbar-brand" style="color: #808af8;">
                     <span class="glyphicon glyphicon-th-large"></span>
                     GNX Platform<sup>v 1.0</sup>
                 </a>
@@ -24,18 +24,20 @@
                 <div >
                     <ul class="nav navbar-nav">
                         <li data-bind="visible: loggedIn()">
-                            <a href="#/module" class="navbar-brand">
+                            <a href="#/module" class="navbar-brand" style="color: #808af8;">
+                                <span class="glyphicon glyphicon-th"></span>
                                 User Modules
                             </a>
                         </li>
                         <li>
-                            <a href="#/app" class="navbar-brand">
+                            <a href="#/app" class="navbar-brand" style="color: #f86c0f;">
+                                <span class="glyphicon glyphicon-leaf"></span>
                                 Demo app
                             </a>
                         </li>
                         <li >
-                            <a href="#/about" class="navbar-brand">
-                                <span class="glyphicon"></span>
+                            <a href="#/about" class="navbar-brand" style="color: #ff6a00;">
+                                <span class="glyphicon glyphicon-comment"></span>
                                 About
                             </a>
                         </li>
@@ -57,7 +59,7 @@
                     </ul>
                     <ul class="nav navbar-nav navbar-right" data-bind="with: user">
                         <li>
-                            <span class="navbar-text nofloat">Logged in as, <a href="#/manage" class="navbar-link" data-bind="text: name"></a>!</span>
+                            <span class="navbar-text nofloat">Logged in as: <a href="#/manage" class="navbar-link" style="color: #ff6a00;" data-bind="text: name"></a></span>
                         </li>
                         <li><a href="#" data-bind="click: $root.logOff">Log off</a></li>
                     </ul>

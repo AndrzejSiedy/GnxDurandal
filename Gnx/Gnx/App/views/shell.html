@@ -23,7 +23,12 @@
                 <!--Menu options always visible-->
                 <div >
                     <ul class="nav navbar-nav">
-                        <li>
+                        <li data-bind="visible: loggedIn()">
+                            <a href="#/module" class="navbar-brand">
+                                Module
+                            </a>
+                        </li>
+                        <li >
                             <a href="#/about" class="navbar-brand">
                                 About
                             </a>
@@ -38,15 +43,11 @@
                                 Login
                             </a>
                         </li>
-                        <!--<li><a href="#">Home</a></li>-->
-                        <!--<li><a href="/Help">Help</a></li>-->
                     </ul>
                 </div>
                 <!--Menu options visible for logged in user-->
                 <div data-bind="if: loggedIn()">
                     <ul class="nav navbar-nav">
-                        <!--<li><a href="#">Home</a></li>-->
-                        <!--<li><a href="/Help">Help</a></li>-->
                     </ul>
                     <ul class="nav navbar-nav navbar-right" data-bind="with: user">
                         <li>

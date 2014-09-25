@@ -75,7 +75,7 @@
             shell.loggedIn(false);
             shell.setupAnonymousRoutes();
 
-            router.navigate('login');
+            router.navigate('home');
         };
 
         return {

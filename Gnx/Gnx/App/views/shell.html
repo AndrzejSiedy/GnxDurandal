@@ -11,11 +11,14 @@
                     <span class="glyphicon glyphicon-th-large"></span>
                     GNX Platform<sup>v 1.0</sup>
                 </a>
-                <a href="#/about" class="navbar-brand" >
+                <a href="#/module" class="navbar-brand" data-bind="if: loggedIn()">
+                    Modules
+                </a>
+                <a href="#/about" class="navbar-brand">
                     About
                 </a>
             </div>
-            
+
             <div class="navbar-collapse collapse" data-bind="if: loggedIn()">
                 <ul class="nav navbar-nav">
                     <!--<li><a href="#">Home</a></li>-->
@@ -34,7 +37,7 @@
     <div data-bind="foreach: errors" class="padding-error">
         <p class="text-danger" data-bind="text: $data"></p>
     </div>
-    
+
     <div data-bind="router: { cacheViews:false }"></div>
 
     <hr />

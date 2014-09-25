@@ -123,8 +123,9 @@
         function addAuthenticatedRoutes(router) {
             router.map([
                 { route: '', moduleId: 'home', nav: 1 },
-                { route: 'about', moduleId: 'about', nav: 2 },
-                { route: 'manage', moduleId: 'manage', nav: 3 }
+                { route: 'module', moduleId: 'module', nav: 2 },
+                { route: 'about', moduleId: 'about', nav: 3 },
+                { route: 'manage', moduleId: 'manage', nav: 4 }
             ]);
         }
 

@@ -20,7 +20,7 @@
             </div>
 
             <div class="navbar-collapse collapse" >
-
+                <!--Menu options always visible-->
                 <div >
                     <ul class="nav navbar-nav">
                         <li>
@@ -30,7 +30,7 @@
                         </li>
                     </ul>
                 </div>
-
+                <!--Menu options visible when user not logged in-->
                 <div data-bind ="ifnot: loggedIn()">
                     <ul class="nav navbar-nav navbar-right">
                         <li>
@@ -42,7 +42,7 @@
                         <!--<li><a href="/Help">Help</a></li>-->
                     </ul>
                 </div>
-
+                <!--Menu options visible for logged in user-->
                 <div data-bind="if: loggedIn()">
                     <ul class="nav navbar-nav">
                         <!--<li><a href="#">Home</a></li>-->

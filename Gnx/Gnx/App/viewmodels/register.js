@@ -10,7 +10,7 @@
         // Other UI state
         var registering = ko.observable(false);
         var errors = ko.observableArray([]);
-        var validationErrors = ko.validation.group([userName, password, confirmPassword]);
+        var validationErrors = ko.validation.group([userName, email, password, confirmPassword]);
 
         // Operations
         var register = function () {

@@ -11,25 +11,50 @@
                     <span class="glyphicon glyphicon-th-large"></span>
                     GNX Platform<sup>v 1.0</sup>
                 </a>
-                <a href="#/module" class="navbar-brand" data-bind="if: loggedIn()">
+                <!--<a href="#/module" class="navbar-brand" data-bind="if: loggedIn()">
                     Modules
-                </a>
-                <a href="#/about" class="navbar-brand">
+                </a>-->
+                <!--<a href="#/about" class="navbar-brand">
                     About
-                </a>
+                </a>-->
             </div>
 
-            <div class="navbar-collapse collapse" data-bind="if: loggedIn()">
-                <ul class="nav navbar-nav">
-                    <!--<li><a href="#">Home</a></li>-->
-                    <!--<li><a href="/Help">Help</a></li>-->
-                </ul>
-                <ul class="nav navbar-nav navbar-right" data-bind="with: user">
-                    <li>
-                        <span class="navbar-text nofloat">Hello, <a href="#/manage" class="navbar-link" data-bind="text: name"></a>!</span>
-                    </li>
-                    <li><a href="#" data-bind="click: $root.logOff">Log off</a></li>
-                </ul>
+            <div class="navbar-collapse collapse" >
+
+                <div >
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="#/about" class="navbar-brand">
+                                About
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div data-bind ="ifnot: loggedIn()">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#/login" class="navbar-brand">
+                                Login
+                            </a>
+                        </li>
+                        <!--<li><a href="#">Home</a></li>-->
+                        <!--<li><a href="/Help">Help</a></li>-->
+                    </ul>
+                </div>
+
+                <div data-bind="if: loggedIn()">
+                    <ul class="nav navbar-nav">
+                        <!--<li><a href="#">Home</a></li>-->
+                        <!--<li><a href="/Help">Help</a></li>-->
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right" data-bind="with: user">
+                        <li>
+                            <span class="navbar-text nofloat">Hello, <a href="#/manage" class="navbar-link" data-bind="text: name"></a>!</span>
+                        </li>
+                        <li><a href="#" data-bind="click: $root.logOff">Log off</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>

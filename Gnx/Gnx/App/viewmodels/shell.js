@@ -113,7 +113,7 @@
 
             router.buildNavigationModel();
 
-            router.mapUnknownRoutes('login', 'login');
+            router.mapUnknownRoutes('home', 'home');
 
             if (!history.active) {
                 router.activate();
@@ -131,9 +131,10 @@
 
         function addAnonymousRoutes(router) {
             router.map([
-                { route: 'about', moduleId: 'about', nav: 1 },
-                { route: 'login', moduleId: 'login', nav: 2 },
-                { route: 'register', moduleId: 'register', nav: 3 }
+                { route: '', moduleId: 'home', nav: 1 },
+                { route: 'about', moduleId: 'about', nav: 2 },
+                { route: 'login', moduleId: 'login', nav: 3 },
+                { route: 'register', moduleId: 'register', nav: 4 }
             ]);
         }
 

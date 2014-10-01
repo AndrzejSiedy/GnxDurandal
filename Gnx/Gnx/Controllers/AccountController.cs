@@ -13,6 +13,9 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
+
+using System.Data.Entity;
+
 using Gnx.Models;
 using Gnx.Providers;
 using Gnx.Results;
@@ -24,6 +27,8 @@ namespace Gnx.Controllers
     public class AccountController : ApiController
     {
         private const string LocalLoginProvider = "Local";
+
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         public AccountController()
             : this(Startup.UserManagerFactory(), Startup.OAuthOptions.AccessTokenFormat)

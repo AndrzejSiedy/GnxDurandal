@@ -1,6 +1,6 @@
 ﻿body {
     padding-top: 50px;
-    padding-bottom: 20px;
+    padding-bottom: 35px;
     font-family: "Segoe UI", 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 16px;
 }
@@ -82,3 +82,12 @@ input[type="checkbox"].input-validation-error {
     width: 100%;
     overflow: hidden;
 }
+
+.fg-orange{
+    color: #ff6a00 !important;
+}
+
+.fg-violet{
+    color: #808af8 !important;
+}
+

@@ -19,6 +19,7 @@ using System.Data.Entity;
 using Gnx.Models;
 using Gnx.Providers;
 using Gnx.Results;
+using System.Web.Helpers;
 
 namespace Gnx.Controllers
 {
@@ -40,9 +41,12 @@ namespace Gnx.Controllers
         {
             UserManager = userManager;
             AccessTokenFormat = accessTokenFormat;
+            RoleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
         }
 
         public UserManager<IdentityUser> UserManager { get; private set; }
+        public RoleManager<IdentityRole> RoleManager { get; set; }
+
         public ISecureDataFormat<AuthenticationTicket> AccessTokenFormat { get; private set; }
 
         // GET api/Account/UserInfo
@@ -322,6 +326,76 @@ namespace Gnx.Controllers
         [Route("Register")]
         public async Task<IHttpActionResult> Register(RegisterBindingModel model)
         {
+
+
+            // create set of roles and admin user
+            try
+            {
+                // test if admin  user already created
+                var hasAdmin = UserManager.FindByEmail("admin@geonetix.pl");
+                if (hasAdmin == null)
+                {
+
+                    // create set of roles
+                    var adminRole = new IdentityRole()
+                    {
+                        Name = "administrator"
+                    };
+                    var createAdminRole = await RoleManager.CreateAsync(adminRole);
+
+                    var superUserRole = new IdentityRole()
+                    {
+                        Name = "superuser"
+                    };
+                    var createSuperUserRole = await RoleManager.CreateAsync(superUserRole);
+
+                    var authenticatedUserRole = new IdentityRole()
+                    {
+                        Name = "authenticated"
+                    };
+                    var createAuthenticatedUserRole = await RoleManager.CreateAsync(authenticatedUserRole);
+                    var guestUserRole = new IdentityRole()
+                    {
+                        Name = "guest"
+                    };
+                    var createGuestUserRole = RoleManager.CreateAsync(guestUserRole);
+
+
+
+
+                    // create admin user
+                    var admin = new IdentityUser
+                    {
+                        UserName = "admin",
+                        Email = "admin@geonetix.pl",
+                        PasswordHash = Crypto.HashPassword("test111")
+                    };
+
+                    IdentityResult resultCreateAdmin = await UserManager.CreateAsync(admin, "test111");
+
+
+                    var userAdmin = UserManager.FindByEmail("admin@geonetix.pl");
+                    var roleresult = UserManager.AddToRole(userAdmin.Id, "administrator");
+                }
+            }
+            catch (Exception ex)
+            {
+                string stoper = ex.Message;
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);

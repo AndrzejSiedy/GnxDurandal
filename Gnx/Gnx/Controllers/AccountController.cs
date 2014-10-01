@@ -327,73 +327,64 @@ namespace Gnx.Controllers
         public async Task<IHttpActionResult> Register(RegisterBindingModel model)
         {
 
-
+            #region old version kept here for sentiment - now moved tyo the seed method - run on update-database
             // create set of roles and admin user
-            try
-            {
-                // test if admin  user already created
-                var hasAdmin = UserManager.FindByEmail("admin@geonetix.pl");
-                if (hasAdmin == null)
-                {
+            //try
+            //{
+            //    // test if admin  user already created
+            //    var hasAdmin = UserManager.FindByEmail("admin@geonetix.pl");
+            //    if (hasAdmin == null)
+            //    {
 
-                    // create set of roles
-                    var adminRole = new IdentityRole()
-                    {
-                        Name = "administrator"
-                    };
-                    var createAdminRole = await RoleManager.CreateAsync(adminRole);
+            //        // create set of roles
+            //        var adminRole = new IdentityRole()
+            //        {
+            //            Name = "administrator"
+            //        };
+            //        var createAdminRole = await RoleManager.CreateAsync(adminRole);
 
-                    var superUserRole = new IdentityRole()
-                    {
-                        Name = "superuser"
-                    };
-                    var createSuperUserRole = await RoleManager.CreateAsync(superUserRole);
+            //        var superUserRole = new IdentityRole()
+            //        {
+            //            Name = "superuser"
+            //        };
+            //        var createSuperUserRole = await RoleManager.CreateAsync(superUserRole);
 
-                    var authenticatedUserRole = new IdentityRole()
-                    {
-                        Name = "authenticated"
-                    };
-                    var createAuthenticatedUserRole = await RoleManager.CreateAsync(authenticatedUserRole);
-                    var guestUserRole = new IdentityRole()
-                    {
-                        Name = "guest"
-                    };
-                    var createGuestUserRole = RoleManager.CreateAsync(guestUserRole);
-
-
-
-
-                    // create admin user
-                    var admin = new IdentityUser
-                    {
-                        UserName = "admin",
-                        Email = "admin@geonetix.pl",
-                        PasswordHash = Crypto.HashPassword("test111")
-                    };
-
-                    IdentityResult resultCreateAdmin = await UserManager.CreateAsync(admin, "test111");
-
-
-                    var userAdmin = UserManager.FindByEmail("admin@geonetix.pl");
-                    var roleresult = UserManager.AddToRole(userAdmin.Id, "administrator");
-                }
-            }
-            catch (Exception ex)
-            {
-                string stoper = ex.Message;
-            }
+            //        var authenticatedUserRole = new IdentityRole()
+            //        {
+            //            Name = "authenticated"
+            //        };
+            //        var createAuthenticatedUserRole = await RoleManager.CreateAsync(authenticatedUserRole);
+            //        var guestUserRole = new IdentityRole()
+            //        {
+            //            Name = "guest"
+            //        };
+            //        var createGuestUserRole = RoleManager.CreateAsync(guestUserRole);
 
 
 
 
+            //        // create admin user
+            //        var admin = new IdentityUser
+            //        {
+            //            UserName = "admin",
+            //            Email = "admin@geonetix.pl",
+            //            PasswordHash = Crypto.HashPassword("test111")
+            //        };
+
+            //        IdentityResult resultCreateAdmin = await UserManager.CreateAsync(admin, "test111");
 
 
+            //        var userAdmin = UserManager.FindByEmail("admin@geonetix.pl");
+            //        var roleresult = UserManager.AddToRole(userAdmin.Id, "administrator");
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    string stoper = ex.Message;
+            //}
 
 
-
-
-
-
+            # endregion
 
 
             if (!ModelState.IsValid)

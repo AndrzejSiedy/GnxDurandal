@@ -1,13 +1,14 @@
 namespace Gnx.Migrations
 {
+    using Gnx.Models;
     using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using System;
-using System.Data.Entity;
-using System.Data.Entity.Migrations;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Web.Helpers;
+    using Microsoft.AspNet.Identity.EntityFramework;
+    using System;
+    using System.Data.Entity;
+    using System.Data.Entity.Migrations;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using System.Web.Helpers;
 
     internal sealed class Configuration : DbMigrationsConfiguration<Gnx.Models.ApplicationDbContext>
     {
@@ -16,63 +17,43 @@ using System.Web.Helpers;
             AutomaticMigrationsEnabled = false;
         }
 
-        private UserManager<IdentityUser> _UserManager { get; set; }
-
-        private RoleManager<IdentityRole> _RoleManager { get; set; }
-
         protected override void Seed(Gnx.Models.ApplicationDbContext context)
         {
 
-            _UserManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>(context));
-            _RoleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+            // create set of roles
+            context.Roles.AddOrUpdate(p => p.Name, new IdentityRole { Name = "administrator" });
+            context.Roles.AddOrUpdate(p => p.Name, new IdentityRole { Name = "superuser" });
+            context.Roles.AddOrUpdate(p => p.Name, new IdentityRole { Name = "authenticated" });
+            context.Roles.AddOrUpdate(p => p.Name, new IdentityRole { Name = "guest" });
 
-            try
+            // commit changes
+            context.SaveChanges();
+
+            // create admin user
+            var admin = new ApplicationUser
             {
-                // create set of roles
-                var adminRole = new IdentityRole()
-                {
-                    Name = "administrator"
-                };
-                var createAdminRole = _RoleManager.CreateAsync(adminRole);
+                UserName = "admin",
+                Email = "admin@geonetix.pl",
+                PasswordHash = Crypto.HashPassword("test111")
+            };
+            context.Users.AddOrUpdate(admin);
+            // commit changes
+            context.SaveChanges();
 
-                var superUserRole = new IdentityRole()
-                {
-                    Name = "superuser"
-                };
-                var createSuperUserRole = _RoleManager.CreateAsync(superUserRole);
+            // get created admin user
+            var myUser = context.Users.Single(user => user.Email == admin.Email);
 
-                var authenticatedUserRole = new IdentityRole()
-                {
-                    Name = "authenticated"
-                };
-                var createAuthenticatedUserRole = _RoleManager.CreateAsync(authenticatedUserRole);
-                var guestUserRole = new IdentityRole()
-                {
-                    Name = "guest"
-                };
-                var createGuestUserRole = _RoleManager.CreateAsync(guestUserRole);
+            // get created admi  role
+            var adminRole = context.Roles.Single(role => role.Name == "administrator");
 
+            // assign admin role to admin user
+            admin.Roles.Add(new IdentityUserRole() { 
+                RoleId = adminRole.Id,
+                UserId = myUser.Id
+            });
 
-
-
-                // create admin user
-                var admin = new IdentityUser
-                {
-                    UserName = "admin",
-                    Email = "admin@geonetix.pl",
-                    PasswordHash = Crypto.HashPassword("test111")
-                };
-
-                IdentityResult resultCreateAdmin = _UserManager.Create(admin, "test111");
-
-
-                var userAdmin = _UserManager.FindByEmail("admin@geonetix.pl");
-                var roleresult = _UserManager.AddToRole(userAdmin.Id, "administrator");
-            }
-            catch (Exception ex)
-            {
-                string stoper = ex.Message;
-            }
+            // commit changes
+            context.SaveChanges();
 
 
             //  This method will be called after migrating to the latest version.

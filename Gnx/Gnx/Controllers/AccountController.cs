@@ -328,10 +328,12 @@ namespace Gnx.Controllers
         {
 
             #region old version kept here for sentiment - now moved tyo the seed method - run on update-database
-            // create set of roles and admin user
+            //// create set of roles and admin user
             //try
             //{
             //    // test if admin  user already created
+
+
             //    var hasAdmin = UserManager.FindByEmail("admin@geonetix.pl");
             //    if (hasAdmin == null)
             //    {

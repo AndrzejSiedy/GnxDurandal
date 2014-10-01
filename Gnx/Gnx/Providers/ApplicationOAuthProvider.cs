@@ -70,14 +70,35 @@ namespace Gnx.Providers
                     return;
                 }
 
-                ClaimsIdentity oAuthIdentity = await userManager.CreateIdentityAsync(user,
+
+                if (user.SecurityStamp == null)
+                {
+                    await userManager.UpdateSecurityStampAsync(user.Id);
+                }
+
+
+                try
+                {
+                    ClaimsIdentity oAuthIdentity = await userManager.CreateIdentityAsync(user,
                     context.Options.AuthenticationType);
-                ClaimsIdentity cookiesIdentity = await userManager.CreateIdentityAsync(user,
-                    CookieAuthenticationDefaults.AuthenticationType);
-                AuthenticationProperties properties = CreateProperties(user.UserName);
-                AuthenticationTicket ticket = new AuthenticationTicket(oAuthIdentity, properties);
-                context.Validated(ticket);
-                context.Request.Context.Authentication.SignIn(cookiesIdentity);
+
+                    ClaimsIdentity cookiesIdentity = await userManager.CreateIdentityAsync(user,
+                        CookieAuthenticationDefaults.AuthenticationType);
+
+                    AuthenticationProperties properties = CreateProperties(user.UserName);
+
+                    AuthenticationTicket ticket = new AuthenticationTicket(oAuthIdentity, properties);
+
+                    context.Validated(ticket);
+                    context.Request.Context.Authentication.SignIn(cookiesIdentity);
+                }
+                catch (Exception ex)
+                {
+
+                }
+
+                
+                
             }
         }
 

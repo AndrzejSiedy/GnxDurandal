@@ -48,6 +48,8 @@ namespace Gnx.Providers
             using (UserManager<IdentityUser> userManager = _userManagerFactory())
             {
 
+                
+
                 // user can log in using UserName or email
                 // test if UserName contains valid 
 
@@ -68,6 +70,21 @@ namespace Gnx.Providers
                 {
                     context.SetError("invalid_grant", "The user name or password is incorrect.");
                     return;
+                }
+
+
+                // get user role if any
+                using (var ac = new Gnx.Controllers.AccountController())
+                {
+                    try
+                    {
+                        var ur = user.Roles.FirstOrDefault();
+                        var role = ac.RoleManager.FindById(ur.RoleId);
+                    }
+                    catch (Exception ex)
+                    {
+                        // silent fail
+                    }
                 }
 
 

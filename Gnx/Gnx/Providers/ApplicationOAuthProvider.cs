@@ -72,20 +72,7 @@ namespace Gnx.Providers
                     return;
                 }
 
-
-                // get user role if any
-                using (var ac = new Gnx.Controllers.AccountController())
-                {
-                    try
-                    {
-                        var ur = user.Roles.FirstOrDefault();
-                        var role = ac.RoleManager.FindById(ur.RoleId);
-                    }
-                    catch (Exception ex)
-                    {
-                        // silent fail
-                    }
-                }
+                
 
 
                 if (user.SecurityStamp == null)
@@ -103,6 +90,24 @@ namespace Gnx.Providers
                         CookieAuthenticationDefaults.AuthenticationType);
 
                     AuthenticationProperties properties = CreateProperties(user.UserName);
+
+                    IdentityRole role;
+                    // get user role if any
+                    using (var ac = new Gnx.Controllers.AccountController())
+                    {
+                        try
+                        {
+                            var ur = user.Roles.FirstOrDefault();
+                            role = ac.RoleManager.FindById(ur.RoleId);
+                            properties.Dictionary.Add(new KeyValuePair<string, string>("userRole", role.Name));
+                        }
+                        catch (Exception ex)
+                        {
+                            // silent fail
+                        }
+                    }
+
+                    
 
                     AuthenticationTicket ticket = new AuthenticationTicket(oAuthIdentity, properties);
 

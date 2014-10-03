@@ -37,7 +37,7 @@
                 password: password()
             }).done(function (data) {
                 loggingIn(false);
-
+                console.warn('xxxxx', data);
                 if (data.userName && data.access_token) {
                     authservice.logUserIn(data.userName, data.access_token, rememberMe());
                 } else {
